@@ -1,11 +1,14 @@
 
+//POST REQUEST
 
 $(document).ready(function(){
-    $('#postMessage').click(function(){
-        // e.preventDefault();
+    $('#postMessage').click(function(e){
+        e.preventDefault();
 
+        //serialize form data
         var url = $('form').serialize();
 
+        //function to turn url to an object
         function getUrlVars(url) {
             var hash;
             var myJson = {};
@@ -17,13 +20,14 @@ $(document).ready(function(){
             return JSON.stringify(myJson);
         }
 
-        var pp = getUrlVars(url);
-        // alert(pp);
+        //pass serialized data to function
+        var test = getUrlVars(url);
 
+        //post with ajax
         $.ajax({
             type:"POST",
             url: "/Work folders/OOP php/RESTFUL traversy/php_rest_myblog/api/post/create.php",
-            data: pp,
+            data: test,
             ContentType:"application/json",
 
             success:function(){
@@ -36,39 +40,14 @@ $(document).ready(function(){
         });
     });
 });
-//   document.addEventListener('DOMContentLoaded',function(){
-//   document.getElementById('postMessage').onclick=function(e){
+    
 
-//           e.preventDefault();
-//           var chapman = {
-//                           "title":"Let's do this",
-//                           "body":"boomer",
-//                           "author":"sai kosuri",
-//                           "category_id":"4"
-//                         }
-
-//           var bon = JSON.stringify(chapman);
-//           req=new XMLHttpRequest();
-//           req.open("POST", '/Work folders/OOP php/RESTFUL traversy/php_rest_myblog/api/post/create.php', true);
-//           req.setRequestHeader('Content-Type','application/json');
-//           req.onreadystatechange=function(){
-
-//             if(req.readyState==4 && req.status==200){
-//               alert('Submission was successful');
-//             }else{
-//               alert('Could not post data');
-//             }
-
-//           };
-//           req.send(bon);           
-//       }
-
-//   });     
-
+//GET REQUEST
 
   document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('getMessage').onclick=function(){
-          // Add your code below this line
+       
+       var req;
        req=new XMLHttpRequest();
        req.open("GET", '/Work folders/OOP php/RESTFUL traversy/php_rest_myblog/api/post/read.php',true);
        req.send();
@@ -76,12 +55,14 @@ $(document).ready(function(){
        req.onload=function(){
        var json=JSON.parse(req.responseText);
 
+       //limit data called
        var son = json.filter(function(val) {
-              return (val.id >= 11);  
+              return (val.id >= 4);  
           });
 
       var html = "";
 
+      //loop and display data
       son.forEach(function(val) {
           var keys = Object.keys(val);
 
@@ -92,8 +73,8 @@ $(document).ready(function(){
           html += "</div><br>";
       });
 
+      //append in message class
       document.getElementsByClassName('message')[0].innerHTML=html;         
-      // document.getElementsByClassName('message')[0].innerHTML=JSON.stringify(json);
       };
     };
   });
