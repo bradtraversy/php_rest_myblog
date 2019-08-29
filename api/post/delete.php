@@ -22,13 +22,29 @@
   $post->id = $data->id;
 
   // Delete post
-  if($post->delete()) {
-    echo json_encode(
-      array('message' => 'Post Deleted')
-    );
-  } else {
-    echo json_encode(
-      array('message' => 'Post Not Deleted')
-    );
-  }
 
+  // Old Code without the Check Function
+  // if($post->delete()) {
+  //   echo json_encode(
+  //     array('message' => 'Post Deleted')
+  //   );
+  // } else {
+  //   echo json_encode(
+  //     array('message' => 'Post Not Deleted')
+  //   );
+  // }
+
+  //New Code with Check Functionality
+  if($post->check()){  
+    if($post->delete()){
+        echo(json_encode(
+            array('message' => 'Post Deleted')
+        ));
+    }
+  }    
+  else {
+    echo(json_encode(
+        array('message' => 'Post Not Deleted')
+    ));
+  }
+?>

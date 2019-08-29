@@ -27,13 +27,30 @@
   $post->category_id = $data->category_id;
 
   // Update post
-  if($post->update()) {
-    echo json_encode(
-      array('message' => 'Post Updated')
-    );
-  } else {
-    echo json_encode(
-      array('message' => 'Post Not Updated')
-    );
+
+  // Old Code without the Check Function
+  // if($post->update()) {
+  //   echo json_encode(
+  //     array('message' => 'Post Updated')
+  //   );
+  // } else {
+  //   echo json_encode(
+  //     array('message' => 'Post Not Updated')
+  //   );
+  // }
+
+  //New Code with Check Functionality
+  if($post->check()){
+    if($post->update()){
+        echo(json_encode(
+            array('message' => 'Post Updated')
+        ));
+    }
+  }
+  else {
+    echo(json_encode(
+        array('message' => 'Post Not Updated')
+    ));
   }
 
+?>
