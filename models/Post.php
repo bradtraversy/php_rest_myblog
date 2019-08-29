@@ -98,6 +98,22 @@
       return false;
     }
 
+    //Check (Checking Function)
+    public function check() {
+      $query = 'SELECT * FROM '.$this->table.' where id = :id';
+
+      $stmt =  $this->conn->prepare($query);
+      $this->id = htmlspecialchars(strip_tags($this->id));
+      $stmt->bindParam(':id', $this->id);
+      $stmt->execute();
+      
+      if(($stmt->rowCount())>0){
+          return true;
+      }
+      printf("Error: Please Check Your ID & Try Again.\n");
+      return false;
+    }
+
     // Update Post
     public function update() {
           // Create query
