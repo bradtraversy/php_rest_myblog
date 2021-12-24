@@ -19,7 +19,8 @@ CREATE TABLE `posts` (
   `body` text NOT NULL,
   `author` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+   FOREIGN KEY (`category_id`) REFERENCES categories(`id`)
 );
 
 INSERT INTO `posts` (`id`, `category_id`, `title`, `body`, `author`) VALUES
