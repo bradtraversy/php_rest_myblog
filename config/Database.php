@@ -1,12 +1,12 @@
 <?php 
   class Database {
     // DB Params
-    private $host = 'localhost';
-    private $db_name = 'myblog';
-    private $username = 'root';
-    private $password = '';
+    private $host = "sql6.freesqldatabase.com";
+    private $db_name = "sql6512306";
+    private $username = "sql6512306";
+    private $password = "Ya1c99w8PJ";
     private $conn;
-
+    
     // DB Connect
     public function connect() {
       $this->conn = null;
